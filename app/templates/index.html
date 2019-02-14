@@ -5,24 +5,35 @@
 
 <body>
 <nav>
-  <h1>Multiply Application</h1>
+  <h1>Multiplication table</h1>
 </nav>
 
 
 {% block content %}
   <form method="post">
-    <label for="a">A:</label>
+    <label for="a">Width:</label>
     <input name="a" id="a" value="{{ t['a'] }}" required><br>
-    <label for="b">B:</label>
+    <label for="b">Height:</label>
     <input name="b" id="b" value="{{ t['b'] }}" required> <br>
-    <label for="b">A*B=</label>
-    <input name="c" id="c" value="{{ t['c'] }}"> <br>
     <input type="submit" value="Multiply!">
+    <table border="1">
+      <TR>
+        <td> </td>
+      {% for i in range(cols) %}
+        <TD>{{(i + 1)}}</TD>
+      {% endfor %}
+      </TR>
+      {% for i in range(rows) %}
+      <TR>
+        <TD>{{i + 1}}</TD>
+        {% for j in range(cols) %}
+         <TD>{{(i +1) * (j + 1)}}</TD>
+         {% endfor %}
+      </TR>
+      {% endfor %}
+      </table>
   </form>
 {% endblock %}
 
-<p>You have used this page {{ times }} times</p>
-
-<a href="{{ url_for('logout') }}">Reset Session</a>
 
 </body>
