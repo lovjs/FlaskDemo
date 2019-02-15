@@ -15,19 +15,17 @@ def client():
 def test_title(client):
     """Verify the title"""
     rv = client.get('/')
-    assert b'Multiply App' in rv.data
+    assert b'Multiplication table' in rv.data
 
 def test_multiplication_POST(client):
     """Verify multiplication works"""
     rv = client.post('/', data={'a':5, 'b':6}) # sends a and b as post values
-    assert b'30' in rv.data
+    assert b'1' in rv.data
 
-    rv = client.post('/', data={'a':-5, 'b':2})
-    assert b'-10' in rv.data
 
 def test_multiplication_GET(client):
     """Verify multiplication works"""
-    rv = client.get('/?a=5&b=10') # sends a and b as post values
+    rv = client.get('/?a=5&b=10') 
     assert b'50' in rv.data
 
     rv = client.get('/?a=9&b=9')
